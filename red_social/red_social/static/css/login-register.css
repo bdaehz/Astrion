@@ -117,3 +117,31 @@ ul{
 .login{
     display: flex;
 }
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    background-color: white;
+    gap: 2vw;
+    padding: 5%;
+    border-radius: 15px;
+}
+
+.card h1{
+    font-size: 30px;
+}
+
+
+.card-body{
+    gap: 30px;
+}
+
+.opciones{
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    gap: 30px;
+}
