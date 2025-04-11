@@ -7,22 +7,10 @@
     <link rel="stylesheet" href="{% static 'css/login-register.css'%}">
 </head>
 <body>
-    <aside class="imagen-login">
-    </aside>
-    <main>
-        <div class="bienvenida">
-            <p class="parte1">
-                ¡Hola, de nuevo
-            </p>
-            <h1>
-                Bienvenido!
-            </h1>
-        </div>
-        <div class="card-body">
-            {% block content %}
-    
-            {% endblock %}
-        </div>
-    </main>
+    <div class="login">
+        {% block content %}
+
+        {% endblock %}
+    </div>
 </body>
 </html>
