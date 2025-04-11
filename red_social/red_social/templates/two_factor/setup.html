@@ -1,0 +1,34 @@
+{% extends "two_factor/_base.html" %}
+
+{% block content %}
+<aside class="imagen-login">
+    <div class="card">
+        
+        {% if has_2fa %}
+        <div class="card-header">
+            <h1>Activar Autenticación de Dos Factores</h1>
+        </div>
+        <div class="card-body">
+            <p>Felicitaciones, ha habilitado con éxito la autenticación de dos factores.</p>
+            <a href="/2faapp/account/two_factor/" class="btn btn-block btn-secondary">Volver a Seguridad de la Cuenta</a>
+        </div>
+        {% else %}
+            <h1>Activar Autenticación de Dos Factores</h1>
+            <p>Está a punto de llevar la seguridad de su cuenta al siguiente nivel. Siga los pasos de este asistente para habilitar la autenticación de dos factores.</p>
+            <form action="" method="post"><input type="hidden" name="csrfmiddlewaretoken" value="tcqXw0oxTqQuyh6KrYJkPvOg5MaMI8tX3MmqlQv9uuWhhjYBdffO4AFexzilOOs3">
+                <table class="mb-3">
+                    <input type="hidden" name="setup_view-current_step" value="welcome" id="id_setup_view-current_step"> 
+                </table>
+                <input type="submit" value="" hidden="">
+                <div class="opciones">
+                    <button type="submit" class="btn btn-primary">Siguiente</button>
+                    <button disabled="" name="" type="button" class="btn">Volver</button>
+                </div>
+            </form>
+            <a href="/" class="float-right btn btn-link">Cancelar</a>
+        {% endif %}
+        
+    </div>
+</aside>
+
+{% endblock %}

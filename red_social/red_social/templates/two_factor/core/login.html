@@ -1,39 +1,43 @@
 {% extends "two_factor/_base.html" %}
 
 {% block content %}
-<aside class="imagen-login">
-</aside>
-<main>
-    <div class="bienvenida">
-        <p class="parte1">
-            ¡Hola, de nuevo
-        </p>
-        <h1>
-            Bienvenido!
-        </h1>
-    </div>
-    <form method="POST">
-        {% csrf_token %}
-        {{ wizard.management_form }}
-        {% for field in wizard.form %}
-            <label for="{{ field.id_for_label }}" class="">{{ field.label }}</label>
-            {{ field }}
-        {% endfor %}
-        <center>
-            <input type="submit" class="submit" value="iniciar sesion">
-        </center>
-        {% if  messages%}
-            {% for message in messages%}
-                <div class="errores">
-                    {{message}}
-                </div>
-            {% endfor%}
-        {% endif %}
-    
-    </form>
-    <div class="iniciar-sesion">
-        <b><p>¿No tienes una cuenta? <a href="{% url 'register' %}"> Registrarme</a></p></b>
-     </div>
-</main>
+<div class="login">
+
+    <aside class="imagen-login">
+    </aside>
+    <main>
+        <div class="bienvenida">
+            <p class="parte1">
+                ¡Hola, de nuevo
+            </p>
+            <h1>
+                Bienvenido!
+            </h1>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            {{ wizard.management_form }}
+            {% for field in wizard.form %}
+                <label for="{{ field.id_for_label }}" class="">{{ field.label }}</label>
+                {{ field }}
+            {% endfor %}
+            <center>
+                <input type="submit" class="submit" value="iniciar sesion">
+            </center>
+            {% if  messages%}
+                {% for message in messages%}
+                    <div class="errores">
+                        {{message}}
+                    </div>
+                {% endfor%}
+            {% endif %}
+        
+        </form>
+        <div class="iniciar-sesion">
+            <b><p>¿No tienes una cuenta? <a href="{% url 'register' %}"> Registrarme</a></p></b>
+         </div>
+    </main>
+</div>
+
 
 {% endblock %}
