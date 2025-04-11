@@ -1,0 +1,42 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrion - Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login-register.css'%}">
+</head>
+<body>
+    <main>
+        <div class="bienvenida">
+            <p class="parte1">
+                ¡Hola,
+            </p>
+            <h1>
+                Bienvenido!
+            </h1>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in register_form %}
+                {{ field }}
+                <div class="errores">
+                    <b>
+                        {% if field.errors %}
+                            {{ field.errors }}
+                        {% endif %}
+                    </b>
+                </div>
+            {% endfor %}
+            <center>
+                <input type="submit" class="submit" value="registrarse">
+            </center>
+        </form>
+        <div class="iniciar-sesion">
+           <b><p>¿Ya tienes una cuenta? <a href="{% url 'login' %}"> Inicia sesion</a></p></b>
+        </div>
+    </main>
+    <aside class="imagen-login">
+    </aside>
+</body>
+</html>
