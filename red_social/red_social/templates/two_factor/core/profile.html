@@ -1,0 +1,29 @@
+{% extends "two_factor/_base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <h2>🔐 Seguridad de la Cuenta</h2>
+
+  <p><strong>Método primario:</strong> Introduce el token generado por tu app de autenticación.</p>
+
+  <h3>🧾 Códigos de Seguridad</h3>
+  {% if backup_tokens %}
+    <p>Te quedan {{ backup_tokens|length }} códigos de respaldo.</p>
+    <form method="post" action="{% url 'two_factor:backup_tokens' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-secondary">Mostrar Códigos</button>
+    </form>
+  {% else %}
+    <p>Te quedan <strong>0</strong> códigos de respaldo.</p>
+    <a href="{% url 'two_factor:backup_tokens' %}" class="btn btn-warning">Generar nuevos códigos</a>
+  {% endif %}
+
+  <hr>
+
+  <h3>❌ Deshabilitar la Autenticación de Dos Factores</h3>
+  <p>Esto no es recomendable, pero si deseas hacerlo puedes desactivar la autenticación.</p>
+  <form method="post" action="{% url 'two_factor:disable' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Deshabilitar 2FA</button>
+  </form>
+{% endblock %}
