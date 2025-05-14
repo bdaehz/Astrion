@@ -3,8 +3,7 @@
 {% load two_factor_tags %}
 
 {% block content %}
-<aside class="imagen-login">
-    <div class="card">
+
         <h1>{% block title %}{% trans "Account Security" %}{% endblock %}</h1>
 
         {% if default_device %}
@@ -37,7 +36,6 @@
             </p>
         {% endif %}
         <a href="{% url 'index' %}">Volver al inicio</a>
-    </div>
-</aside>
+
 
 {% endblock %}

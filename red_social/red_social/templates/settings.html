@@ -23,7 +23,10 @@
                     <b>Activar</b>
                 </a>
             {% else %}
-                <span class="texto">
+                <a href="{% url 'two_factor:profile' %}" class="boton">
+                    <b>Ir al panel de seguridad de verificacion de 2 pasos</b>
+                </a>
+                {% comment %} <span class="texto">
                     <p>
                         {% blocktrans with primary=default_device|as_action %}Primary method: {{ primary }}{% endblocktrans %}
                     </p>
@@ -31,20 +34,35 @@
                 <h2 class="subtitulo">Tokens de respaldo</h2>
                 <span class="texto">
                     <p>
-                        {% blocktrans trimmed %}If you don't have any device with you, you can access
-                            your account using backup tokens.{% endblocktrans %}
-                        {% blocktrans trimmed count counter=backup_tokens %}
-                            You have only one backup token remaining.
-                        {% plural %}
-                            You have {{ counter }} backup tokens remaining.
+                        {% blocktrans trimmed %}
+                            Los códigos de respaldo se pueden usar cuando sus números de teléfono principal
+                            y secundario no están disponibles. Los tokens de respaldo a continuación se pueden usar para verificar 
+                            el inicio de sesión. Si ha agotado todos sus códigos de respaldo, puede generar un nuevo conjunto de 
+                            tokens de respaldo. Solo serán válidos los códigos de respaldo que se muestran a continuación.
                         {% endblocktrans %}
-                        </p>
-                        <p>
-                            <a href="{% url 'two_factor:backup_tokens' %}" class="btn btn-info">
-                                {% trans "Show Codes" %}
-                            </a>
-                        </p>
-                </span>
+                        
+                    </p>
+                    <p>{% if device.token_set.count %}
+                            <ul>
+                                {% for token in device.token_set.all %}
+                                <li>{{ token.token }}</li>
+                                {% endfor %}
+                            </ul>
+                            <p>{% blocktrans %}Print these tokens and keep them somewhere safe.{% endblocktrans %}</p>
+                            {% else %}
+                            <p>{% trans "You don't have any backup codes yet." %}</p>
+                        {% endif %}
+                    </p>
+                    <form method="post">{% csrf_token %}{{ form.as_p }}
+                        <button class="btn btn-primary boton" type="submit">{% trans "Generate Tokens" %}</button>
+                        <a href="{% url 'two_factor:profile'%}" class="float-right btn btn-link">{% trans "Back to Account Security" %}</a>
+                    </form>
+                    <p>
+                        <a href="{% url 'two_factor:backup_tokens' %}" class="btn btn-info">
+                            {% trans "Show Codes" %}
+                        </a>
+                    </p>
+                </span> {% endcomment %}
             {% endif %}
         </div>
     </div>

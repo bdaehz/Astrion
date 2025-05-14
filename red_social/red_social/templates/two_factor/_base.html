@@ -5,13 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/login-register.css'%}">
-
+    
 </head>
 <body>
+
+    {% if request.resolver_match.view_name != 'two_factor:login' %}
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+        <link rel="stylesheet" href="{% static 'css/settings.css'%}">
+        {% include "menu.html" %}
+        <div class="contenido">
+    {% endif %}
+
     {% block content %}
         {% for item in content%}
             {{ item }}
         {% endfor %}
     {% endblock %}
+
+    {% if request.resolver_match.view_name != 'two_factor:login' %}
+        </div>
+    {% endif %}
 </body>
 </html>

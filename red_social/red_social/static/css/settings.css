@@ -22,6 +22,12 @@
     font-size: 1.3em;
 }
 
+.texto{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
 .boton{
     background-color: var(--color-tercero);
     color: white;
