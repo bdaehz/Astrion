@@ -1,0 +1,37 @@
+:root{
+    --color-principal: #7F67A9;
+    --color-secundario: #EA9950;
+    --color-tercero: #C62368;
+    --color-letras: #222021;
+    --color-fondo: white;
+    --color-fondo-alt: #E4D2CC; 
+}
+
+.categoria{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    gap: 1.5rem;
+}
+
+.titulo{
+    font-size: 1.8em;
+}
+
+.subtitulo{
+    font-size: 1.3em;
+}
+
+.boton{
+    background-color: var(--color-tercero);
+    color: white;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 10px 20px;
+    border: none;
+    text-decoration: none;
+}
+
+.boton:hover{
+    background-color: #db4684;
+}

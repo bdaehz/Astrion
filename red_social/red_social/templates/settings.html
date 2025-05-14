@@ -1,0 +1,52 @@
+{% load i18n %}
+{% load two_factor_tags %}
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrion - Ajustes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/settings.css'%}">
+</head>
+<body>
+    {% include "menu.html" %}
+    <div class="contenido">
+        <div class="categoria">
+            <h1 class="titulo">verificacion de 2 pasos (2FA)</h1>
+            {% if has_2fa %}
+                <span class="texto">
+                    Agrega un nivel adicional de protección a tu cuenta utilizando la verificacion de 2 pasos con tu celular
+                </span>
+                <a href="{% url 'index' %}" class="boton">
+                    <b>Activar</b>
+                </a>
+            {% else %}
+                <span class="texto">
+                    <p>
+                        {% blocktrans with primary=default_device|as_action %}Primary method: {{ primary }}{% endblocktrans %}
+                    </p>
+                </span>
+                <h2 class="subtitulo">Tokens de respaldo</h2>
+                <span class="texto">
+                    <p>
+                        {% blocktrans trimmed %}If you don't have any device with you, you can access
+                            your account using backup tokens.{% endblocktrans %}
+                        {% blocktrans trimmed count counter=backup_tokens %}
+                            You have only one backup token remaining.
+                        {% plural %}
+                            You have {{ counter }} backup tokens remaining.
+                        {% endblocktrans %}
+                        </p>
+                        <p>
+                            <a href="{% url 'two_factor:backup_tokens' %}" class="btn btn-info">
+                                {% trans "Show Codes" %}
+                            </a>
+                        </p>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

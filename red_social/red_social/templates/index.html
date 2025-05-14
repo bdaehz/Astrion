@@ -3,19 +3,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astrion</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
 </head>
 <body>
-    {% if user.get_username != "" %}
-        <center>
-            <h1>Bienvenido {{user.get_username}}</h1><br>
-            <a href="{% url 'LogOut'%}">Cerrar Sesion</a><br>
-            <a href="{% url 'two_factor:setup' %}">Activiar verificacion de 2 pasos</a><br>
-        </center>
-    {% else %}
-        <a href="{% url 'register'%}">Registrarme</a><br>
-        <a href="{% url 'login'%}">iniciar sesion</a><br>
-        
-    {% endif %}
-    
+    {% include "menu.html" %}
+    <div class="contenido">
+        {% if user.get_username != "" %}
+            <center>
+                <h1>Bienvenido {{user.get_username}}</h1><br>
+                <a href="{% url 'LogOut'%}">Cerrar Sesion</a><br>
+                <a href="{% url 'two_factor:setup' %}">Activiar verificacion de 2 pasos</a><br>
+            </center>
+        {% else %}
+            <a href="{% url 'register'%}">Registrarme</a><br>
+            <a href="{% url 'login'%}">iniciar sesion</a><br>
+        {% endif %}
+    </div>
 </body>
 </html>

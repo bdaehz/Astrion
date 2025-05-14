@@ -23,3 +23,6 @@ def Loadlogin(request):
 def Logout(request):
     logout(request)
     return redirect('index')
+
+def Settings(request):
+    return render(request, 'settings.html')
