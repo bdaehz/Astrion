@@ -19,3 +19,9 @@ vamos a lo ultimo del archivo y escribimos esto:
 
 app_name = "two_factor"
 urlpatterns = core + profile + plugin_urlpatterns
+
+si llega a dar un fallo lo que se escribio en el archivo escriban esto otro:
+
+#urlpatterns = (core + profile + plugin_urlpatterns, 'two_factor')
+
+app_name = "two_factor" ;urlpatterns = core + profile + plugin_urlpatterns
