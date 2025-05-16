@@ -3,39 +3,80 @@
 {% load two_factor_tags %}
 
 {% block content %}
-
-        <h1>{% block title %}{% trans "Account Security" %}{% endblock %}</h1>
-
-        {% if default_device %}
-            <p>{% blocktrans with primary=default_device|as_action %}Primary method: {{ primary }}{% endblocktrans %}</p>
-
-            <h2>{% trans "Backup Tokens" %}</h2>
-            <p>
-            {% blocktrans trimmed %}If you don't have any device with you, you can access
-                your account using backup tokens.{% endblocktrans %}
-            {% blocktrans trimmed count counter=backup_tokens %}
-                You have only one backup token remaining.
-            {% plural %}
-                You have {{ counter }} backup tokens remaining.
-            {% endblocktrans %}
-            </p>
-            <p><a href="{% url 'two_factor:backup_tokens' %}"
-                class="btn btn-info">{% trans "Show Codes" %}</a></p>
-
-            <h3>{% trans "Disable Two-Factor Authentication" %}</h3>
-            <p>{% blocktrans trimmed %}However we strongly discourage you to do so, you can
-            also disable two-factor authentication for your account.{% endblocktrans %}</p>
-            <p><a class="btn btn-secondary" href="{% url 'two_factor:disable' %}">
-            {% trans "Disable Two-Factor Authentication" %}</a></p>
-        {% else %}
-            <p>{% blocktrans trimmed %}Two-factor authentication is not enabled for your
-            account. Enable two-factor authentication for enhanced account
-            security.{% endblocktrans %}</p>
-            <p><a href="{% url 'two_factor:setup' %}" class="btn btn-primary">
-            {% trans "Enable Two-Factor Authentication" %}</a>
-            </p>
-        {% endif %}
-        <a href="{% url 'index' %}">Volver al inicio</a>
+    <div class="categoria">
+        <a href="{% url 'settings' %}" id="return">
+            <svg xmlns="http://www.w3.org/2000/svg" width="5" height="5" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+            </svg>
+            volver
+        </a>
+        <h1 class="titulo">
+            {% trans "Account Security" %}
+        </h1>
+            {% if default_device %}
+            <span class="texto">
+                <p>
+                    {% blocktrans with primary=default_device|as_action %}
+                        Primary method: {{ primary }}
+                    {% endblocktrans %}
+                </p>
+            </span>
+            <span class="texto">
+                <h2 class="subtitulo">
+                    {% trans "Backup Tokens" %}
+                </h2>
+                <p>
+                    {% blocktrans trimmed %}
+                        If you don't have any device with you, you can access
+                        your account using backup tokens.
+                    {% endblocktrans %}
+                    <br>
+                    {% blocktrans trimmed count counter=backup_tokens %}
+                        You have only one backup token remaining.
+                    {% plural %}
+                        You have {{ counter }}
+                    {% endblocktrans %}
+                </p>
+                <br>
+                <p>
+                    <a href="{% url 'two_factor:backup_tokens' %}" class="boton">
+                        {% trans "Show Codes" %}
+                    </a>
+                </p>
+            </span>
+            <span class="texto">
+                <h2 class="subtitulo">
+                    {% trans "Disable Two-Factor Authentication" %}
+                </h2>
+                <p>
+                    {% blocktrans trimmed %}
+                        However we strongly discourage you to do so, you can
+                        also disable two-factor authentication for your account.
+                    {% endblocktrans %}
+                </p>
+                <br>
+                <p>
+                    <a class="boton" href="{% url 'two_factor:disable' %}">
+                        {% trans "Disable Two-Factor Authentication" %}
+                    </a>
+                </p>
+            </span>
+            {% else %}
+                <span class="texto">
+                    <p>
+                        {% blocktrans trimmed %}
+                            Two-factor authentication is not enabled for your
+                            account. Enable two-factor authentication for enhanced account
+                            security.
+                        {% endblocktrans %}
+                    </p>
+                    <p>
+                        <a href="{% url 'two_factor:setup' %}" class="btn btn-primary">
+                            {% trans "Enable Two-Factor Authentication" %}
+                        </a>
+                    </p>
+                </span>
+            {% endif %}
 
 
 {% endblock %}

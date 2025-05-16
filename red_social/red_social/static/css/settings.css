@@ -7,6 +7,20 @@
     --color-fondo-alt: #E4D2CC; 
 }
 
+#return{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: black;
+    gap: 10px;
+    text-decoration: none;
+}
+#return svg{
+    width: 15px;
+    height: 15px;;
+}
+
+
 .categoria{
     display: flex;
     flex-direction: column;
@@ -16,6 +30,8 @@
 
 .titulo{
     font-size: 1.8em;
+    padding-bottom: 0.5em;
+    border-bottom: 2px black solid;
 }
 
 .subtitulo{
@@ -26,6 +42,15 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.codes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    gap: 10px;
 }
 
 .boton{
@@ -40,4 +65,14 @@
 
 .boton:hover{
     background-color: #db4684;
+}
+
+.boton2{
+    background-color: rgb(206, 206, 206);
+    color: black;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 10px 20px;
+    border: none;
+    text-decoration: none;
 }
