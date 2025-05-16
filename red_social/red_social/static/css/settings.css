@@ -67,12 +67,23 @@
     background-color: #db4684;
 }
 
-.boton2{
-    background-color: rgb(206, 206, 206);
-    color: black;
+.boton-danger{
+    background-color: transparent;
+    color: rgb(255, 64, 64);
     border-radius: 10px;
     width: fit-content;
     padding: 10px 20px;
-    border: none;
+    border: 1.5px solid rgb(255, 64, 64);
     text-decoration: none;
+    transition: 0.5s;
+}
+
+.boton-danger:hover{
+    background-color: rgb(255, 64, 64);
+    color: black;
+}
+
+#form{
+    width: fit-content;
+    gap: 20px;
 }

@@ -1,19 +1,24 @@
 {% extends "two_factor/_base.html" %}
 
 {% block content %}
-<aside class="imagen-login">
-    <div class="card">
-        <div class="card-header">
-            <h1>Activar Autenticación de Dos Factores</h1>
+<div class="categoria">
+    <a href="{% url 'settings' %}" id="return">
+        <svg xmlns="http://www.w3.org/2000/svg" width="5" height="5" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+        </svg>
+        volver
+    </a>
+    <h1 class="titulo">
+        Activar Autenticación de Dos Factores
+    </h1>
+    <span class="texto">
+        <p>Felicitaciones, ha habilitado con éxito la autenticación de dos factores.</p>
+        <div style="display: flex; justify-content: center;">
+            <img src="https://i.pinimg.com/originals/3d/c6/e9/3dc6e9db19fd171037d6d1e72f922140.gif" width="200px" height="200px">
+            <img src="https://i.gifer.com/origin/ce/ce2c95c4e286110abc5abe7292012641_w200.gif" width="200px" height="200px">
+            <img src="https://i.pinimg.com/originals/3d/c6/e9/3dc6e9db19fd171037d6d1e72f922140.gif" width="200px" height="200px">
         </div>
-        <div class="card-body">
-            <p>Felicitaciones, ha habilitado con éxito la autenticación de dos factores.</p>
-            <div class="opciones">
-                <a href="/2faapp/account/two_factor/" class="btn btn-block btn-secondary">Volver a Seguridad de la Cuenta</a>
-                <a href="{% url 'index' %}" class="btn btn-block btn-secondary">Volver al inicio</a>
-            </div>
-        </div>
-    </div>
-</aside>
+    </span>
+</div>
 
 {% endblock %}
