@@ -11,13 +11,23 @@
 .card{
     background-color: white;
     border-radius: 14px;
-    width: 600px;
+    width: 50vw;
     max-width: 600px;
     min-width: 100px;
-    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    padding: 2rem;
+}
+
+.card-header{
+    width: 100%;
+}
+
+.profile{
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: start;
 }

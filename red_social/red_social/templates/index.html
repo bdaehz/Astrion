@@ -17,6 +17,9 @@
                         <div class='card'>
                             <div class='card-header'>
                                 <div class="profile">
+                                    {% if perfil.photo %}
+                                        <img src="{{ perfil.photo }}" alt="Foto de perfil">
+                                    {% endif %}
                                     <h2>{{ publicacion.id_user.username }}</h2>
                                 </div>
                             </div>

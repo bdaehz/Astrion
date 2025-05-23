@@ -7,6 +7,7 @@ class Perfil(models.Model):
     id_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     username = models.TextField(max_length=30)
     biografia = models.TextField(max_length=200)
+    photo = models.FileField(upload_to='img/pfp/', default='img/pfp/default.jpg')
 
 class Publicacion(models.Model):
     id_publicacion = models.AutoField(primary_key=True)
