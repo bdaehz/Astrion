@@ -5,26 +5,38 @@
     <title>Astrion</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
 </head>
 <body>
     {% include "menu.html" %}
     <div class="contenido">
         {% if user.get_username != "" %}
             <center>
-                {% for publicacion in publicaciones %}
-                    <div class="post">
-                        <p><strong>Usuario:</strong> {{ publicacion.id_user.username }}</p>
-                        <p><strong>Contenido:</strong> {{ publicacion.contenido }}</p>
-                        <p><strong>Fecha:</strong> {{ publicacion.fecha }}</p>
-                        {% if publicacion.archivo %}
-                            <p><strong>Archivo:</strong> <a href="{{ publicacion.archivo.url }}" target="_blank">Ver archivo</a></p>
-                        {% endif %}
+                <div class="post">
+                    {% for publicacion in publicaciones %}
+                        <div class='card'>
+                            <div class='card-header'>
+                                <div class="profile">
+                                    <h2>{{ publicacion.id_user.username }}</h2>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p>{{ publicacion.contenido }}</p>
+                                {% if publicacion.archivo %}
+                                    <p><strong>Archivo:</strong> <a href="{{ publicacion.archivo.url }}" target="_blank">Ver archivo</a></p>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer">
+                                <p>{{ publicacion.fecha }}</p>
+                            </div>
+                        </div>
                         <hr>
+                        {% endfor %}
                     </div>
-                    {% empty %}
-                    <p>No hay publicaciones todavía.</p>
-                {% endfor %}
             </center>
+            <div class"sugerencias">
+                
+            </div>
         {% else %}
             <a href="{% url 'register'%}">Registrarme</a><br>
             <a href="{% url 'login'%}">iniciar sesion</a><br>

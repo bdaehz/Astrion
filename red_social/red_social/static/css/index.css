@@ -1,0 +1,23 @@
+.post{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+    gap: 20px;
+    width: 40%;
+}
+
+.card{
+    background-color: white;
+    border-radius: 14px;
+    width: 600px;
+    max-width: 600px;
+    min-width: 100px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
