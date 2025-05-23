@@ -19,6 +19,8 @@
                                 <div class="profile">
                                     {% if perfil.photo %}
                                         <img src="{{ perfil.photo }}" alt="Foto de perfil">
+                                    {% else %}
+                                        <img src="https://api.dicebear.com/9.x/dylan/svg?seed={{ publicacion.id_user.username }}">
                                     {% endif %}
                                     <h2>{{ publicacion.id_user.username }}</h2>
                                 </div>
