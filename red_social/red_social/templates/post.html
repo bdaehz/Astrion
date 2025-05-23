@@ -1,0 +1,23 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrion - Publicar</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+    {% include "menu.html" %}
+    <div class="contenido">
+        <form action="{% url 'posting' %}" method="POST">
+
+            {% csrf_token %}
+            <label>
+                que quieres escribir?
+            </label>
+            <input type="text" name="contenido" placeholder="Escribe tu mensaje aquí..." required>
+            <button type="submit">Publicar</button>
+        </form>
+    </div>
+</body>
+</html>

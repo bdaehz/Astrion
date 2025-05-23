@@ -11,9 +11,19 @@
     <div class="contenido">
         {% if user.get_username != "" %}
             <center>
-                <h1>Bienvenido {{user.get_username}}</h1><br>
-                <a href="{% url 'LogOut'%}">Cerrar Sesion</a><br>
-                <a href="{% url 'two_factor:setup' %}">Activiar verificacion de 2 pasos</a><br>
+                {% for publicacion in publicaciones %}
+                    <div class="post">
+                        <p><strong>Usuario:</strong> {{ publicacion.id_user.username }}</p>
+                        <p><strong>Contenido:</strong> {{ publicacion.contenido }}</p>
+                        <p><strong>Fecha:</strong> {{ publicacion.fecha }}</p>
+                        {% if publicacion.archivo %}
+                            <p><strong>Archivo:</strong> <a href="{{ publicacion.archivo.url }}" target="_blank">Ver archivo</a></p>
+                        {% endif %}
+                        <hr>
+                    </div>
+                    {% empty %}
+                    <p>No hay publicaciones todavía.</p>
+                {% endfor %}
             </center>
         {% else %}
             <a href="{% url 'register'%}">Registrarme</a><br>

@@ -12,4 +12,6 @@ urlpatterns = [
     path('2faapp/', include(('two_factor.urls', 'two_factor'))),
     path('2fa/setup/', SetupView.as_view(), name='setup_2fa'),  # Esta vista maneja el flujo de configuración de 2FA
     path('settings/', views.Settings, name='settings'),
+    path('postear/', views.Posting, name='posting'),
+    path('account/', views.Account, name='account'),
 ]
