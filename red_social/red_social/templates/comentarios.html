@@ -1,0 +1,51 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrion</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+</head>
+<body>
+    {% include "menu.html" %}
+    <div class="contenido">
+        {% if user.get_username != "" %}
+            <center>
+                <div class="post">
+                    {% for publicacion in publicaciones %}
+                        <div class='card'>
+                            <div class='card-header'>
+                                <div class="profile">
+                                    {% if perfil.photo %}
+                                        <img src="{{ perfil.photo }}" alt="Foto de perfil">
+                                    {% else %}
+                                        <img src="https://api.dicebear.com/9.x/dylan/svg?seed={{ publicacion.id_user.username }}">
+                                    {% endif %}
+                                    <h2>{{ publicacion.id_user.username }}</h2>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p>{{ publicacion.contenido }}</p>
+                                {% if publicacion.archivo %}
+                                    <p><strong>Archivo:</strong> <a href="{{ publicacion.archivo.url }}" target="_blank">Ver archivo</a></p>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer">
+                                <p>{{ publicacion.fecha }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        {% endfor %}
+                    </div>
+            </center>
+            <div class"sugerencias">
+                
+            </div>
+        {% else %}
+            <a href="{% url 'register'%}">Registrarme</a><br>
+            <a href="{% url 'login'%}">iniciar sesion</a><br>
+        {% endif %}
+    </div>
+</body>
+</html>

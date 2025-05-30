@@ -19,21 +19,25 @@
         <form method="post">
             {% csrf_token %}
             {% for field in register_form %}
-                {{ field }}
-                <div class="errores">
-                    <b>
-                        {% if field.errors %}
-                            {{ field.errors }}
-                        {% endif %}
-                    </b>
+                <div class="form-field">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                    {{ field }}
+                    <div class="errores">
+                        <b>
+                            {% if field.errors %}
+                                {{ field.errors }}
+                            {% endif %}
+                        </b>
+                    </div>
                 </div>
             {% endfor %}
             <center>
                 <input type="submit" class="submit" value="registrarse">
             </center>
         </form>
+
         <div class="iniciar-sesion">
-           <b><p>¿Ya tienes una cuenta? <a href="{% url 'login' %}"> Inicia sesion</a></p></b>
+           <b>¿Ya tienes una cuenta? <a href="{% url 'login' %}"> Inicia sesion</a></b>
         </div>
     </main>
     <aside class="imagen-login">

@@ -19,8 +19,15 @@ def register(request):
     register_form = RegisterForm(request.POST)
     if request.method == 'POST':
         if register_form.is_valid():
-            register_form.save()
+            user = register_form.save()
             messages.success(request, 'Te registraste con exito')
+            #cuando se crea el usuario se crea la vista del perfil
+            perfil = Perfil(
+                id_user=user,
+                username=user.username,
+                biografia='Hola estoy usando Astrion que cool😎'
+            )
+            perfil.save()
             return redirect('login')
     return render(request, 'register.html', {'register_form': register_form})
 

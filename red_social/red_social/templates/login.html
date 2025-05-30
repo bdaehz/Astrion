@@ -20,10 +20,14 @@
         </div>
         <form method="POST">
             {% csrf_token %}
-            <label for="User">username:</label>
-            <input type="text" class="input" name="username" id="User" placeholder="user1384">
-            <label for="Password">password:</label>
-            <input type="password" name="password" id="Password" class="input">
+            <div class="form-field">
+                <label for="User">username:</label>
+                <input type="text" class="input" name="username" id="User" placeholder="user1384">
+            </div>
+            <div class="form-field">
+                <label for="Password">password:</label>
+                <input type="password" name="password" id="Password" class="input">
+            </div>
             <a href="{% url 'index'%}">
                 <p>
                     <b>

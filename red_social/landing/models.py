@@ -12,7 +12,7 @@ class Perfil(models.Model):
 class Publicacion(models.Model):
     id_publicacion = models.AutoField(primary_key=True)
     id_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # id_comentario = models.ForeignKey('Comentario', on_delete=models.CASCADE)
+    #id_comentario = models.
     archivo = models.FileField(upload_to='img/media/')
     fecha = models.DateTimeField(auto_now_add=True)
     contenido = models.TextField(max_length=200)
