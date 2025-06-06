@@ -1,0 +1,36 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil de {{ usuario.username }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include "menu.html" %}
+
+    <div class="contenido">
+        <h1>{{ perfil.username }}</h1>
+        <img src="https://api.dicebear.com/9.x/dylan/svg?seed={{ perfil.username }}" alt="Foto de perfil" width="150">
+        <p><strong>Biografía:</strong> {{ perfil.biografia }}</p>
+
+        <hr>
+
+        <h2>Publicaciones de {{ perfil.username }}</h2>
+        {% if publicaciones %}
+            <ul>
+                {% for pub in publicaciones %}
+                    <li style="margin-bottom: 20px;">
+                        <strong>Fecha:</strong> {{ pub.fecha|date:"d M Y H:i" }}<br>
+                        <strong>Contenido:</strong> {{ pub.contenido }}<br>
+                        {% if pub.archivo %}
+                            <img src="{{ pub.archivo.url }}" width="100">
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Este usuario no ha publicado nada aún.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

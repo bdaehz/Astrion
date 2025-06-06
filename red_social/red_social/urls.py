@@ -14,4 +14,6 @@ urlpatterns = [
     path('settings/', views.Settings, name='settings'),
     path('postear/', views.Posting, name='posting'),
     path('account/', views.Account, name='account'),
+    path('search/', views.Buscar, name='search'),
+    path('perfil/usuario/<str:username>/', views.ver_perfil, name='ver_perfil'),
 ]

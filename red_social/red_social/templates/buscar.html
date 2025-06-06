@@ -1,0 +1,56 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrion - Buscar</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+</head>
+<body>
+    {% include "menu.html" %}
+    <div class="contenido">
+        <form action="{% url 'search' %}" method="POST">
+
+            {% csrf_token %}
+            <label>
+                a quien quieres buscar?
+            </label>
+            <input type="text" name="contenido" placeholder="Escribe lo que quieres buscar aqui" required>
+            <select name="filtrar">
+                <option value="user" selected>Usuario</option>
+                {% comment %} <option value="email">Correo</option>
+                <option value="hashtag">hashtag</option> {% endcomment %}
+            </select>
+
+            <button type="submit">Publicar</button>
+            <br>
+
+        {% if perfiles %}
+        <div>
+            <h2>Usuarios encontrados para "{{ contenido }}":</h2>
+            <div class="cards">
+                {% for perfil in perfiles %}
+                    <a href="{% url 'ver_perfil' username=perfil.username %}">
+                    <div class='card'>
+                        <div class='card-header'>
+                            <div class="profile">
+                                    <img src="https://api.dicebear.com/9.x/dylan/svg?seed={{ perfil.username }}">
+                                <h2>{{ perfil.username }}</h2>
+                            </div>
+                        </div>
+                        <div class="card-body w-100">
+                            <p>Bio: {{ perfil.biografia }}</p>
+                        </div>
+                    </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% elif contenido %}
+            <p>No se encontraron perfiles con el nombre "{{ contenido }}".</p>
+        {% endif %}
+        </form>
+    </div>
+</body>
+</html>
