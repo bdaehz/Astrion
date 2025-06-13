@@ -5,27 +5,33 @@
     <title>Astrion - Buscar</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
-    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+    <link rel="stylesheet" href="{% static 'css/search.css'%}">
 </head>
 <body>
     {% include "menu.html" %}
     <div class="contenido">
+        <div class="card" id="principal">
         <form action="{% url 'search' %}" method="POST">
 
             {% csrf_token %}
             <label>
-                a quien quieres buscar?
+                ¿Que deseas buscar?
             </label>
-            <input type="text" name="contenido" placeholder="Escribe lo que quieres buscar aqui" required>
-            <select name="filtrar">
-                <option value="user" selected>Usuario</option>
-                {% comment %} <option value="email">Correo</option>
-                <option value="hashtag">hashtag</option> {% endcomment %}
-            </select>
-
-            <button type="submit">Publicar</button>
-            <br>
-
+            <div class="input-combinado">
+                <input type="text" name="contenido" placeholder="Escribe lo que quieres buscar aqui" required>
+                <select name="filtrar">
+                    <option value="user" selected>Usuario</option>
+                    <option value="email">Correo</option>
+                    <option value="preferencia">preferencia</option>
+                </select>
+                <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    
         {% if perfiles %}
         <div>
             <h2>Usuarios encontrados para "{{ contenido }}":</h2>
@@ -50,7 +56,7 @@
         {% elif contenido %}
             <p>No se encontraron perfiles con el nombre "{{ contenido }}".</p>
         {% endif %}
-        </form>
+        </div>
     </div>
 </body>
 </html>

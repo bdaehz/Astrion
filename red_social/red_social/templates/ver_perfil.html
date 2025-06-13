@@ -1,36 +1,85 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Perfil de {{ usuario.username }}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/account.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
 <body>
     {% include "menu.html" %}
 
     <div class="contenido">
-        <h1>{{ perfil.username }}</h1>
-        <img src="https://api.dicebear.com/9.x/dylan/svg?seed={{ perfil.username }}" alt="Foto de perfil" width="150">
-        <p><strong>Biografía:</strong> {{ perfil.biografia }}</p>
+        <div class="perfil">
+            <div class="card-user-head">
+                <div class="user">
+                    <img src="https://api.dicebear.com/9.x/dylan/svg?seed={{ perfil.username }}" alt="Foto de perfil" width="150">
+                    <h1>{{ perfil.username }}</h1>
+                </div>
+                <p class="bio">
+                    <strong>Biografía:</strong> {{ perfil.biografia|default:"Este usuario no ha escrito una biografía." }}
+                </p>
+            </div>
 
-        <hr>
+            <div class="card-user-body">
+                <hr>
+                <h2>Publicaciones de <span class="marca">@{{ perfil.username }}</span></h2>
 
-        <h2>Publicaciones de {{ perfil.username }}</h2>
-        {% if publicaciones %}
-            <ul>
-                {% for pub in publicaciones %}
-                    <li style="margin-bottom: 20px;">
-                        <strong>Fecha:</strong> {{ pub.fecha|date:"d M Y H:i" }}<br>
-                        <strong>Contenido:</strong> {{ pub.contenido }}<br>
-                        {% if pub.archivo %}
-                            <img src="{{ pub.archivo.url }}" width="100">
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>Este usuario no ha publicado nada aún.</p>
-        {% endif %}
+                {% if publicaciones %}
+                    <div class="post-contenedor">
+                        {% for publicacion in publicaciones %}
+                            <div class="post">
+                                <div class="post-header">
+                                    <div class="post-user">
+                                        <a href="http://127.0.0.1:8000/perfil/usuario/{{publicacion.id_user.username}}">
+                                            <img src="{{ perfil.photo }}" class="post-profile-pic">
+                                        </a>
+                                        <div class="post-user-info">
+                                            <a href="http://127.0.0.1:8000/perfil/usuario/{{publicacion.id_user.username}}">
+                                                <p class="post-username">{{ publicacion.id_user.username }}</p>
+                                            </a>
+                                            <p class="post-date">{{ publicacion.fecha }}</p>
+                                        </div>
+                                    </div>
+
+                                    {% if user == publicacion.id_user %}
+                                        <div class="acciones">
+                                            <div class="dropdown">
+                                                <svg ... class="bi bi-three-dots" ...></svg>
+                                                <div class="dropdown-content">
+                                                    <div class="botones">
+                                                        <a href="{% url 'DeltePost' id=publicacion.id_publicacion volver='index' %}" class="boton-borrar">
+                                                            <svg ... class="bi bi-trash" ...></svg>
+                                                            <span><b>Borrar</b></span>
+                                                        </a>
+                                                        <a class="boton-editar">
+                                                            <svg ... class="bi bi-pencil-square" ...></svg>
+                                                            <span><b>Editar</b></span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="post-content">
+                                    <p>{{ publicacion.contenido|urlize }}</p>
+                                </div>
+
+                                <div class="post-tags">
+                                    <span class="tag">#astrion</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>Este usuario no ha publicado nada aún.</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -1,52 +1,200 @@
-.post{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 5%;
-    gap: 1rem;
-    width: 40%;
+:root {
+  --color-fondo: #ffffff;
+  --color-morado-fuerte: #7f4edc;
+  --color-verde-acento: #3ddc84;
+  --color-verde-hover: #2fb66b;
+  --color-texto-gris: #555555;
+  --color-texto-oscuro: #2e2e2e;
+  --color-blanco: #ffffff;
+  --color-sombra: #804edc83;
 }
 
-.card{
-    background-color: white;
-    border-radius: 14px;
-    width: 50vw;
+body {
+  display: flex;
+  flex-direction: row;
+}
+
+.post-contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 50px;
+}
+
+.post {
     max-width: 600px;
-    min-width: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-}
-
-.card-header{
     width: 100%;
+    background-color: var(--color-fondo);
+    border: 2px solid var(--color-morado-fuerte);
+    border-radius: 15px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 10px var(--color-sombra);
 }
 
-.profile{
-    font-size: 0.8rem;
+.post-header {
     display: flex;
     align-items: center;
-    justify-content: start;
-    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
-.profile img{
+a{
+    text-decoration: none;
+}
+
+.post-user{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-profile-pic {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-verde-acento);
 }
 
-.cards{
+.post-user-info {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    gap: 5px;
+}
+
+.post-username {
+    font-weight: bold;
+    color: var(--color-morado-fuerte);
+    font-size: 16px;
+}
+
+.post-date {
+    width: 100%;
+    font-size: 12px;
+    color: var(--color-texto-gris);
+}
+
+.post-content p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-texto-oscuro);
+}
+
+.acciones{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    left: -100px;
+    min-width: 160px;
+    border-radius: 14px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.post-tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.botones{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
-.w-100{
-    width: 100%;
+.boton-borrar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    gap: 5px;
+    padding: 5px 10px;
+    border: 1px solid #D0342C;
+    border-radius: 10px;
+    color: #D0342C;
+    transition: color 1s;
+}
+
+.boton-borrar:hover{
+    color: white;
+    background-color: #D0342C;
+}
+
+.boton-borrar svg{
+    width: 20px;
+    height: 20px;
+}
+
+.boton-editar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    gap: 5px;
+    padding: 5px 10px;
+    border: 1px solid cadetblue;
+    border-radius: 10px;
+    color: cadetblue;
+    transition: color 1s;
+}
+
+.boton-editar:hover{
+    color: white;
+    background-color: cadetblue;
+}
+
+.boton-editar svg{
+    width: 20px;
+    height: 20px;
+}
+
+.registrado{
+    display: flex;
+    align-items: center;
+    border: #9CCFBC 1.5px solid;
+    background-color: #CEE7DD;
+    color: #0A3622;
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.tag {
+    background-color: var(--color-verde-acento);
+    color: var(--color-blanco);
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.tag:hover {
+    background-color: var(--color-verde-hover);
 }

@@ -1,0 +1,103 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrion - Editar cuenta</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        :root {
+            --color-fondo: #ffffff;
+            --color-morado-fuerte: #7f4edc;
+            --color-verde-acento: #3ddc84;
+            --color-verde-hover: #2fb66b;
+            --color-texto-gris: #555555;
+            --color-texto-oscuro: #2e2e2e;
+            --color-blanco: #ffffff;
+            --color-sombra: #804edc83;
+        }
+
+        body {
+            background-color: var(--color-fondo);
+            color: var(--color-texto-oscuro);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contenido {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--color-blanco);
+            box-shadow: 0 4px 20px var(--color-sombra);
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: var(--color-morado-fuerte);
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+            color: var(--color-texto-gris);
+        }
+
+        textarea, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        img {
+            border-radius: 50%;
+            margin-top: 10px;
+            border: 2px solid var(--color-morado-fuerte);
+        }
+
+        button[type="submit"] {
+            background-color: var(--color-verde-acento);
+            color: var(--color-blanco);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--color-verde-hover);
+        }
+    </style>
+</head>
+<body>
+    {% include "menu.html" %}
+    <div class="contenido">
+        <h1>Editar Perfil</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label for="biografia">Biografía:</label>
+            <textarea id="biografia" name="biografia">{{ perfil.biografia }}</textarea>
+
+            <label for="photo">Cambiar foto de perfil:</label>
+            <input id="photo" type="file" name="photo">
+
+            <button type="submit">Guardar cambios</button>
+        </form>
+    </div>
+</body>
+</html>

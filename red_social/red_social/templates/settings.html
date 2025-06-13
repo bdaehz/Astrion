@@ -12,59 +12,27 @@
 </head>
 <body>
     {% include "menu.html" %}
-    <div class="contenido">
-        <div class="categoria">
-            <h1 class="titulo">verificacion de 2 pasos (2FA)</h1>
-            {% if has_2fa %}
-                <span class="texto">
-                    Agrega un nivel adicional de protección a tu cuenta utilizando la verificacion de 2 pasos con tu celular
-                </span>
-                <a href="{% url 'index' %}" class="boton">
-                    <b>Activar</b>
-                </a>
-            {% else %}
-                <a href="{% url 'two_factor:profile' %}" class="boton">
-                    <b>Ir al panel de seguridad de verificacion de 2 pasos</b>
-                </a>
-                {% comment %} <span class="texto">
-                    <p>
-                        {% blocktrans with primary=default_device|as_action %}Primary method: {{ primary }}{% endblocktrans %}
-                    </p>
-                </span>
-                <h2 class="subtitulo">Tokens de respaldo</h2>
-                <span class="texto">
-                    <p>
-                        {% blocktrans trimmed %}
-                            Los códigos de respaldo se pueden usar cuando sus números de teléfono principal
-                            y secundario no están disponibles. Los tokens de respaldo a continuación se pueden usar para verificar 
-                            el inicio de sesión. Si ha agotado todos sus códigos de respaldo, puede generar un nuevo conjunto de 
-                            tokens de respaldo. Solo serán válidos los códigos de respaldo que se muestran a continuación.
-                        {% endblocktrans %}
-                        
-                    </p>
-                    <p>{% if device.token_set.count %}
-                            <ul>
-                                {% for token in device.token_set.all %}
-                                <li>{{ token.token }}</li>
-                                {% endfor %}
-                            </ul>
-                            <p>{% blocktrans %}Print these tokens and keep them somewhere safe.{% endblocktrans %}</p>
-                            {% else %}
-                            <p>{% trans "You don't have any backup codes yet." %}</p>
-                        {% endif %}
-                    </p>
-                    <form method="post">{% csrf_token %}{{ form.as_p }}
-                        <button class="btn btn-primary boton" type="submit">{% trans "Generate Tokens" %}</button>
-                        <a href="{% url 'two_factor:profile'%}" class="float-right btn btn-link">{% trans "Back to Account Security" %}</a>
-                    </form>
-                    <p>
-                        <a href="{% url 'two_factor:backup_tokens' %}" class="btn btn-info">
-                            {% trans "Show Codes" %}
-                        </a>
-                    </p>
-                </span> {% endcomment %}
-            {% endif %}
+    <div class="contenido ajustes">
+    <h1 class="ajustes-titulo">Ajustes de la cuenta</h1>
+
+    <section class="categoria">
+        <h2 class="subtitulo">Seguridad</h2>
+        <p class="descripcion">
+            Protege tu cuenta con autenticación de dos factores.
+        </p>
+        <a href="/2faapp/account/two_factor/" class="boton">
+            Ir al panel de verificación en dos pasos
+        </a>
+    </section>
+
+    <section class="categoria">
+        <h2 class="subtitulo">Cuenta</h2>
+        <div class="texto">
+            <a href="/perfil/editar/" class="boton-secundario">Editar cuenta</a>
+            <a href="/LogOut/" class="boton-danger">Cerrar sesión</a>
         </div>
-    </div>
+    </section>
+</div>
+
 </body>
 </html>

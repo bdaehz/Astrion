@@ -13,8 +13,9 @@ from landing.models import Perfil, Publicacion
 # Elimina la clase TwoFactorSetupWizard porque ya estamos usando SetupView de two-factor-auth
 
 def index(request):
+    perfil = Perfil.objects.all()
     publicaciones = Publicacion.objects.all().order_by('-fecha')
-    return render(request, 'index.html', {'publicaciones': publicaciones})
+    return render(request, 'index.html', {'publicaciones': publicaciones, 'photo': perfil})
 
 def register(request):
     register_form = RegisterForm(request.POST)
@@ -26,6 +27,7 @@ def register(request):
             perfil = Perfil(
                 id_user=user,
                 username=user.username,
+                photo="https://api.dicebear.com/9.x/dylan/svg?seed="+user.username,
                 biografia='Hola estoy usando Astrion que cool😎'
             )
             perfil.save()
@@ -47,18 +49,21 @@ def Settings(request):
 def Posting(request):
     if request.method == 'POST':
         contenido = request.POST['contenido']
+        imagen = request.FILES.get('imagen')
         posteo = Publicacion(
             id_user = request.user,
             contenido=contenido,
+            archivo=imagen
         )
         posteo.save()
+        messages.success(request, '¡Publicación creada!')
         return redirect('index')
     return render(request, 'post.html')
 
 def Buscar(request):
     if request.method == 'POST':
-        buscar = request.POST["contenido"];
-        filtrar = request.POST["filtrar"];
+        buscar = request.POST["contenido"]
+        filtrar = request.POST["filtrar"]
         if(filtrar == "user"):
             perfiles = Perfil.objects.filter(username__icontains=buscar)
             return render(request, 'buscar.html', {'perfiles': perfiles, 'contenido': buscar})
@@ -75,5 +80,20 @@ def ver_perfil(request, username):
         'publicaciones': publicaciones
     })
 
-def Account(request):
-    return render(request, 'account.html')
+def DeletePost(request, id, volver):
+    post = Publicacion.objects.get(pk=id)
+    post.delete()
+    messages.success(request, 'Se borro con exito el posteo!')
+    return redirect(volver)
+
+def EditCuenta(request):
+    perfil = get_object_or_404(Perfil, id_user=request.user)
+
+    if request.method == 'POST':
+        perfil.biografia = request.POST.get('biografia')
+        if request.FILES.get('photo'):
+            perfil.photo = request.FILES['photo']
+        perfil.save()
+        return redirect('ver_perfil', username=request.user.username)  # ajustá esto según tu vista de perfil
+
+    return render(request, 'Edit_account.html', {'perfil': perfil})

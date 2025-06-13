@@ -1,89 +1,89 @@
-:root{
-    --color-principal: #7F67A9;
-    --color-secundario: #EA9950;
-    --color-tercero: #C62368;
-    --color-letras: #222021;
-    --color-fondo: white;
-    --color-fondo-alt: #E4D2CC; 
-}
-
-#return{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    color: black;
-    gap: 10px;
-    text-decoration: none;
-}
-#return svg{
-    width: 15px;
-    height: 15px;;
+:root {
+  --color-fondo: #ffffff;
+  --color-morado-fuerte: #7f4edc;
+  --color-verde-acento: #3ddc84;
+  --color-verde-hover: #2fb66b;
+  --color-texto-gris: #555555;
+  --color-texto-oscuro: #2e2e2e;
+  --color-blanco: #ffffff;
+  --color-sombra: #804edc83;
 }
 
 
-.categoria{
-    display: flex;
-    flex-direction: column;
-    margin: 30px;
-    gap: 1.5rem;
+.contenido.ajustes {
+  margin: 0 auto;
+  padding: 30px;
+  background-color: var(--color-blanco);
+  border-radius: 12px;
 }
 
-.titulo{
-    font-size: 1.8em;
-    padding-bottom: 0.5em;
-    border-bottom: 2px black solid;
+.ajustes-titulo {
+  font-size: 2em;
+  margin-bottom: 30px;
+  border-bottom: 3px solid var(--color-morado-fuerte);
+  padding-bottom: 10px;
 }
 
-.subtitulo{
-    font-size: 1.3em;
+.categoria {
+  margin-bottom: 40px;
 }
 
-.texto{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.subtitulo {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: var(--color-morado-fuerte);
 }
 
-.codes{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0;
-    gap: 10px;
+.descripcion {
+  margin-bottom: 15px;
+  color: var(--color-texto-gris);
 }
 
-.boton{
-    background-color: var(--color-tercero);
-    color: white;
-    border-radius: 10px;
-    width: fit-content;
-    padding: 10px 20px;
-    border: none;
-    text-decoration: none;
+.texto {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.boton:hover{
-    background-color: #db4684;
+.boton,
+.boton-secundario,
+.boton-danger {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  width: fit-content;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-.boton-danger{
-    background-color: transparent;
-    color: rgb(255, 64, 64);
-    border-radius: 10px;
-    width: fit-content;
-    padding: 10px 20px;
-    border: 1.5px solid rgb(255, 64, 64);
-    text-decoration: none;
-    transition: 0.5s;
+/* Botón principal (verificación) */
+.boton {
+  background-color: var(--color-verde-acento);
+  color: var(--color-blanco);
+  border: none;
+}
+.boton:hover {
+  background-color: var(--color-verde-hover);
 }
 
-.boton-danger:hover{
-    background-color: rgb(255, 64, 64);
-    color: black;
+/* Botón secundario (editar cuenta) */
+.boton-secundario {
+  background-color: #eeeeee;
+  color: var(--color-texto-oscuro);
+  border: 1px solid #cccccc;
+}
+.boton-secundario:hover {
+  background-color: #dddddd;
 }
 
-#form{
-    width: fit-content;
-    gap: 20px;
+/* Botón de peligro (cerrar sesión) */
+.boton-danger {
+  background-color: transparent;
+  color: #d44;
+  border: 2px solid #d44;
+}
+.boton-danger:hover {
+  background-color: #d44;
+  color: var(--color-blanco);
 }
